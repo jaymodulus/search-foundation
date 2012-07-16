@@ -24,15 +24,37 @@ import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.core.CoreContainer;
+import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+
 //$Id: TestDynamicIndexer.java 64237 2012-07-12 21:58:20Z jay.hill $
 
-public class TestDynamicIndexer implements IndexingConstants{
+public class TestDynamicIndexer  implements IndexingConstants{
 	Logger logger = Logger.getLogger(TestDynamicIndexer.class);
 
 	DynamicXmlUpdateRequestHandler indexer = new DynamicXmlUpdateRequestHandler();
+	
+	private SolrServer server;
+	
+    public String getSchemaFile() {
+        return "solr/conf/schema.xml";
+    }
+
+    public String getSolrConfigFile() {
+        return "solr/conf/solrconfig.xml";
+    }
+
+//    @Before
+//    @Override
+//    public void setUp() throws Exception {
+//        //super.setUp();
+//        server = new EmbeddedSolrServer(h.getCoreContainer(), h.getCore().getName());
+//    }
+//    
+    
+    
 
 	/*
 	 * tests: 
@@ -46,6 +68,8 @@ public class TestDynamicIndexer implements IndexingConstants{
 
 	@Test
 	public void testConnectToSolr() throws IOException, ParserConfigurationException, SAXException {
+		
+		//TODO: crazy-ass comment to see if git is handling changes correctly
 		
 		// Note that the following property could be set through JVM level arguments too
 		System.setProperty("solr.solr.home","/Users/jayhill/esr/customers/bby/bby-apache-solr-3.6.0/example/solr");
